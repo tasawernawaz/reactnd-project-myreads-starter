@@ -3,6 +3,10 @@ import BookDetails from './BookDetails'
 
 
 class BookSearch extends Component {
+    state = {
+        query: "",
+        results: []
+    }
     render () {
         return (
             <div className="search-books">
@@ -23,7 +27,7 @@ class BookSearch extends Component {
                 </div>
                 <div className="search-books-results">
                 <ol className="books-grid">
-                     <BookDetails />
+                     <BookDetails books={this.state.results}/>
                 </ol>
                 </div>
             </div>
