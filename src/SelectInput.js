@@ -2,9 +2,19 @@ import React, {Component} from 'react'
 
 
 class SelectInput extends Component {
+    state =  {
+        selectedValue: ""
+    }
+
+    handleChange = (e) => {
+        this.setState({
+            selectedValue: e.target.value
+        })
+    }
+
     render () {
         return (
-            <select>
+            <select value={this.state.selectedValue} onChange={this.handleChange}>
                 <option value="move" disabled>Move to...</option>
                 <option value="currentlyReading">Currently Reading</option>
                 <option value="wantToRead">Want to Read</option>
