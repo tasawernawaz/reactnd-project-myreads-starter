@@ -6,15 +6,17 @@ class SelectInput extends Component {
         selectedValue: ""
     }
 
-    handleChange = (e) => {
-        this.setState({
-            selectedValue: e.target.value
-        })
+    handleChange = (event) => {
+        this.setState({selectedValue: event.target.value},this.handleCatagoryChange(event))
+    }
+
+    handleCatagoryChange = (event) => {
+        this.props.handleCatagoryChange(event.target.name, event.target.value)
     }
 
     render () {
         return (
-            <select value={this.state.selectedValue} onChange={this.handleChange}>
+            <select name={this.props.bookId} value={this.state.selectedValue} onChange={this.handleChange}>
                 <option value="move" disabled>Move to...</option>
                 <option value="currentlyReading">Currently Reading</option>
                 <option value="wantToRead">Want to Read</option>

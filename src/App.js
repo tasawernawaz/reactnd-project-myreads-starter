@@ -1,5 +1,5 @@
 import React from 'react'
-// import * as BooksAPI from './BooksAPI'
+import * as BooksAPI from './BooksAPI'
 import './App.css'
 import ListBooks from './ListBooks'
 import BookSearch from './BookSearch'
@@ -8,7 +8,7 @@ import {Route} from 'react-router-dom'
 class BooksApp extends React.Component {
   constructor(props) {
     super(props)
-    this.handleCatagoryChange = this.handleCatagoryChange(this)
+    this.handleCatagoryChange = this.handleCatagoryChange.bind(this)
   }
 
   state = {
@@ -23,11 +23,18 @@ class BooksApp extends React.Component {
     read: [],
   }
 
-  handleCatagoryChange = (book, prevCat, newCat) => {
-    this.setState(currentState => ({
-      //remove from previous cat and add in new cat
-    }
+
+  handleCatagoryChange = (bookId, newCat) => {
+    if (newCat === "none") {
+      // remove from all arrays
+    } else {
+      BooksAPI.get(bookId).then( (response) => (
+        this.setState(currentState => ({
+          [newCat]: currentState.currentlyReading.concat(response)
+        }
+      ))
     ))
+    }
   }
 
   render() {
@@ -35,13 +42,18 @@ class BooksApp extends React.Component {
       <div className="app">
         <Route exact path="/" render={() => (
             <ListBooks
+            handleCatagoryChange={this.handleCatagoryChange}
             currentlyReading={this.state.currentlyReading}
             wantToRead={this.state.wantToRead}
             read={this.state.read}
             />
           )}
         />
-        <Route path="/search-book" component={BookSearch}/>
+        <Route path="/search-book" render={ () => (
+          <BookSearch
+            handleCatagoryChange={this.handleCatagoryChange}
+          />
+        )}/>
       </div>
     )
   }

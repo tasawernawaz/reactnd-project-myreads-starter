@@ -10,7 +10,7 @@ class BookSearch extends Component {
         results: []
     }
 
-    handleChange = (e) => {
+    handleInputChange = (e) => {
         this.setState({
             query: e.target.value
         }, this.searchBooks)
@@ -42,14 +42,13 @@ class BookSearch extends Component {
                         */}
                         <input type="text" placeholder="Search by title or author"
                         value={this.state.query}
-                        onChange={this.handleChange}
+                        onChange={this.handleInputChange}
                         />
-
                     </div>
                 </div>
                 <div className="search-books-results">
                 <ol className="books-grid">
-                     <BookDetails books={this.state.results}/>
+                     <BookDetails handleCatagoryChange={this.props.handleCatagoryChange} books={this.state.results}/>
                 </ol>
                 </div>
             </div>

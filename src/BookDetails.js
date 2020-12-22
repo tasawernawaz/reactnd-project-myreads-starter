@@ -1,9 +1,14 @@
 import React, {Component} from 'react'
 import SelectInput from './SelectInput'
+import PropTypes from 'prop-types'
 
 class BookDetails extends Component {
+    static propTypes = {
+        books: PropTypes.arrayOf(PropTypes.object).isRequired,
+        handleCatagoryChange: PropTypes.func.isRequired
+    }
     render () {
-        const books = this.props.books
+        const {books, handleCatagoryChange } = this.props
         return (
             <ol className="books-grid">
                 {books.map((book) => (
@@ -12,7 +17,7 @@ class BookDetails extends Component {
                     <div className="book-top">
                         <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url("${book.imageLinks.thumbnail}")` }}></div>
                         <div className="book-shelf-changer">
-                        <SelectInput />
+                        <SelectInput bookId={book.id} handleCatagoryChange={handleCatagoryChange}/>
                         </div>
                     </div>
                     <div className="book-title">{book.title}</div>
