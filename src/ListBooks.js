@@ -5,7 +5,10 @@ import {Link} from 'react-router-dom'
 
 class ListBooks extends Component {
     render () {
-        const {currentlyReading, wantToRead, read, handleCatagoryChange} = this.props
+        const {books, handleCatagoryChange} = this.props
+        const currentlyReading = books.filter(book => book.shelf === "currentlyReading")
+        const wantToRead = books.filter(book => book.shelf === "wantToRead")
+        const read = books.filter(book => book.shelf === "read")
 
         return (
             <div className="list-books">
@@ -13,12 +16,12 @@ class ListBooks extends Component {
                 <h1>MyReads</h1>
                 </div>
                 <div className="list-books-content">
-                    <BookShelf catagoryId="currentlyReading" catagoryName="Currently Reading" books={currentlyReading} handleCatagoryChange={handleCatagoryChange}/>
-                    <BookShelf catagoryId="wantToRead" catagoryName="Want to read" books={wantToRead} handleCatagoryChange={handleCatagoryChange}/>
-                    <BookShelf catagoryId="read" catagoryName="Read" books={read} handleCatagoryChange={handleCatagoryChange}/>
+                    <BookShelf shelfName="Currently Reading" books={currentlyReading} handleCatagoryChange={handleCatagoryChange}/>
+                    <BookShelf shelfName="Want to read" books={wantToRead} handleCatagoryChange={handleCatagoryChange}/>
+                    <BookShelf shelfName="Read" books={read} handleCatagoryChange={handleCatagoryChange}/>
                 </div>
                 <div className="open-search">
-                    <Link className="open-search" to="/search-book">Add a book</Link>
+                    <Link className="open-search" to="/search">Add a book</Link>
                 </div>
             </div>
         )
@@ -31,12 +34,12 @@ export default ListBooks
 class BookShelf extends Component {
     render () {
 
-        const {catagoryId, catagoryName, books, handleCatagoryChange} = this.props
+        const {shelfName, books, handleCatagoryChange} = this.props
         return (
             <div className="bookshelf">
-                <h2 className="bookshelf-title">{catagoryName}</h2>
+                <h2 className="bookshelf-title">{shelfName}</h2>
                 <div className="bookshelf-books">
-                    <BookDetails catagoryId={catagoryId} handleCatagoryChange={handleCatagoryChange} books={books}/>
+                    <BookDetails handleCatagoryChange={handleCatagoryChange} books={books}/>
                 </div>
             </div>
         )
