@@ -24,19 +24,25 @@ class BooksApp extends React.Component {
   }
 
 
-  handleCatagoryChange = (bookId, newCat) => {
-    if (newCat === "none") {
-      // remove from all arrays
+  handleCatagoryChange = (bookId, newCat, prevCat) => {
+    if (prevCat && prevCat !== "none") {
+      this.setState(currentState => ({
+        [prevCat]: currentState[prevCat].filter(book => book.id !== bookId)
+      }), this.addBookInCatagory(bookId, newCat))
     } else {
-      BooksAPI.get(bookId).then( (response) => (
-        this.setState(currentState => ({
-          [newCat]: currentState.currentlyReading.concat(response)
-        }
-      ))
-    ))
+      this.addBookInCatagory(bookId, newCat)
     }
   }
 
+  addBookInCatagory = (bookId, catagory) => {
+    alert(catagory)
+      BooksAPI.get(bookId).then( (response) => (
+        this.setState(currentState => ({
+          [catagory]: currentState[catagory].concat(response)
+        }
+      ))
+    ))
+  }
   render() {
     return (
       <div className="app">

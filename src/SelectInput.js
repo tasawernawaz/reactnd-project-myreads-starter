@@ -7,11 +7,15 @@ class SelectInput extends Component {
     }
 
     handleChange = (event) => {
-        this.setState({selectedValue: event.target.value},this.handleCatagoryChange(event))
+        const previousValue = this.state.selectedValue
+        this.setState(
+            {selectedValue: event.target.value},
+            this.handleCatagoryChange(event, previousValue)
+        )
     }
 
-    handleCatagoryChange = (event) => {
-        this.props.handleCatagoryChange(event.target.name, event.target.value)
+    handleCatagoryChange = (event, previousValue) => {
+        this.props.handleCatagoryChange(event.target.name, event.target.value, previousValue)
     }
 
     render () {
