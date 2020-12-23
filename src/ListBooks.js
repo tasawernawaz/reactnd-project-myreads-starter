@@ -13,9 +13,9 @@ class ListBooks extends Component {
                 <h1>MyReads</h1>
                 </div>
                 <div className="list-books-content">
-                    <BookShelf catagory="Currently Reading" books={currentlyReading} handleCatagoryChange={handleCatagoryChange}/>
-                    <BookShelf catagory="Want to read" books={wantToRead} handleCatagoryChange={handleCatagoryChange}/>
-                    <BookShelf catagory="Read" books={read} handleCatagoryChange={handleCatagoryChange}/>
+                    <BookShelf catagoryId="currentlyReading" catagoryName="Currently Reading" books={currentlyReading} handleCatagoryChange={handleCatagoryChange}/>
+                    <BookShelf catagoryId="wantToRead" catagoryName="Want to read" books={wantToRead} handleCatagoryChange={handleCatagoryChange}/>
+                    <BookShelf catagoryId="read" catagoryName="Read" books={read} handleCatagoryChange={handleCatagoryChange}/>
                 </div>
                 <div className="open-search">
                     <Link className="open-search" to="/search-book">Add a book</Link>
@@ -31,12 +31,12 @@ export default ListBooks
 class BookShelf extends Component {
     render () {
 
-        const {catagory, books, handleCatagoryChange} = this.props
+        const {catagoryId, catagoryName, books, handleCatagoryChange} = this.props
         return (
             <div className="bookshelf">
-                <h2 className="bookshelf-title">{catagory}</h2>
+                <h2 className="bookshelf-title">{catagoryName}</h2>
                 <div className="bookshelf-books">
-                    <BookDetails handleCatagoryChange={handleCatagoryChange} books={books}/>
+                    <BookDetails catagoryId={catagoryId} handleCatagoryChange={handleCatagoryChange} books={books}/>
                 </div>
             </div>
         )

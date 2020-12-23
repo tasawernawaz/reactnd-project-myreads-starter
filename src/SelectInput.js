@@ -2,8 +2,11 @@ import React, {Component} from 'react'
 
 
 class SelectInput extends Component {
-    state =  {
-        selectedValue: ""
+    constructor(props) {
+        super(props)
+        this.state =  {
+            selectedValue: this.props.catagory || "none"
+        }
     }
 
     handleChange = (event) => {
