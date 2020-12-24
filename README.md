@@ -1,3 +1,32 @@
+# Project Overview
+
+## Before start
+
+Clone the project from [My forked repo](https://github.com/tasawernawaz/reactnd-project-myreads-starter).
+
+```
+git clone git@github.com:tasawernawaz/reactnd-project-myreads-starter.git
+```
+
+After clonning project run the following commands to start the server.
+
+* install all project dependencies with `npm install`
+* start the development server with `npm start`
+
+By default server would be start at http://localhost:3000/.
+
+## Main page
+
+There are three different shelves containing books shown on the main page. We can switch books between different shelves by clicking dropdown.
+
+## Search page
+
+Books can be search by going on http://localhost:3000/search directly or by clicking on add book button in the right corner.
+
+Search results can also be selected for showing in different book shelves. Previously added books in main page would contain the previously selected state.
+
+
+# Project Instructions
 # MyReads Project
 
 This is the starter template for the final assessment project for Udacity's React Fundamentals course. The goal of this template is to save you time by providing a static example of the CSS and HTML markup that may be used, but without any of the React code that is needed to complete the project. If you choose to start with this template, your job will be to add interactivity to the app by refactoring the static code in this template.
@@ -63,7 +92,7 @@ update(book, shelf)
 ```
 
 * book: `<Object>` containing at minimum an `id` attribute
-* shelf: `<String>` contains one of ["wantToRead", "currentlyReading", "read"]  
+* shelf: `<String>` contains one of ["wantToRead", "currentlyReading", "read"]
 * Returns a Promise which resolves to a JSON object containing the response data of the POST request
 
 ### `search`
