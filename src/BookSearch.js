@@ -17,12 +17,19 @@ class BookSearch extends Component {
     }
 
     searchBooks = () => {
+        const booksInShelves = this.props.books
         BooksAPI.search(this.state.query).then(response => {
-            if(response) {
-                this.setState({
-                    results: response
-                })
-            }
+            const results = response.map(book => {
+                const bookInShelf = booksInShelves.find(b => b.id === book.id)
+                if (bookInShelf) {
+                    book.shelf = bookInShelf.shelf
+                }
+                return book
+            })
+
+            this.setState({
+                results: results
+            })
         })
     }
 
