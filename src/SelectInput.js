@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import PropTypes from 'prop-types'
 
 
 class SelectInput extends Component {
@@ -7,6 +8,12 @@ class SelectInput extends Component {
         this.state =  {
             selectedValue: this.props.catagory || "none"
         }
+    }
+
+    static propTypes = {
+        catagory: PropTypes.string,
+        bookId: PropTypes.string.isRequired,
+        handleCatagoryChange: PropTypes.func.isRequired
     }
 
     handleChange = (event) => {
